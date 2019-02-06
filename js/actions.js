@@ -7,7 +7,7 @@ function setName(nom) {
     name = nom;
 }
 
-export function get() {
+function get() {
     return {
         nom: name,
         vie: live,
@@ -16,9 +16,16 @@ export function get() {
     };
 }
 
-export function init(nom, vie = 200, monnaie = 1000, enVie = true) {
+function init(nom, vie = 200, monnaie = 1000, enVie = true) {
     name = nom;
     live = vie;
     money = monnaie;
     awake = enVie;
 }
+
+
+export default {
+    init: init,
+    get: get
+}
+
