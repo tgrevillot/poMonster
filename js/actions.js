@@ -16,11 +16,11 @@ function get() {
     };
 }
 
-function init(nom, vie = 200, monnaie = 1000, enVie = true) {
-    name = nom;
-    live = vie;
-    money = monnaie;
-    awake = enVie;
+function init(monstre) {
+    name = monstre.name;
+    live = monstre.life;
+    money = monstre.money;
+    awake = monstre.awake;
 }
 
 

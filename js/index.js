@@ -1,3 +1,6 @@
-import app from "app.js"
+import app from "./app.js";
 
-window.addEventListener("load", start);
+window.addEventListener("load",() => {
+    console.log("Debug");
+    app();
+});
