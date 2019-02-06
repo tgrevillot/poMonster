@@ -5,7 +5,7 @@ let awake = true;
 
 function setName(nom) {
     name = nom;
-} 
+}
 
 export function get() {
     return {
