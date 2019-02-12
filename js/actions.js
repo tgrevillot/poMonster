@@ -16,6 +16,43 @@ function get() {
     };
 }
 
+function actionRealisable(nbVieSuffisante, nbArgent = 0) {
+    return awake && live >= nbVieSuffisante && money >= nbArgent;
+}
+
+function run() {
+    if(actionRealisable(1))
+        live -= 1;
+}
+
+function fight() {
+    if(actionRealisable(3))
+        live -= 3;
+}
+
+function work() {
+    if(actionRealisable(1)) {
+        live--;
+        money += 2;
+    }
+}
+
+function eat() {
+    if(actionRealisable(1, 3)) {
+        money -= 3;
+        live += 2;
+    }
+}
+
+function sleep(fonction) {
+    awake = false;
+    setTimeout(() => {
+        live++;
+        awake = true;
+        fonction();
+    }, 10000);
+}
+
 function init(monstre) {
     name = monstre.name;
     live = monstre.life;
@@ -26,6 +63,11 @@ function init(monstre) {
 
 export default {
     init: init,
-    get: get
+    get: get,
+    run: run,
+    fight: fight,
+    work: work,
+    eat: eat,
+    sleep: sleep
 }
 

@@ -12,17 +12,18 @@ function log(message) {
 }
 
 function displayStatus(monster) {
-    let status = document.querySelectorAll("#status li");
+    let statusID = document.querySelector("#status");
+    let status = statusID.childNodes;
     let infosMonstre = monster.get();
     let tab = [];
-    tab[0] = document.createElement("li").appendChild(document.createTextNode('life:' + infosMonstre.vie + " ")) 
-    tab[1] = document.createElement("li").appendChild(document.createTextNode('money:' + infosMonstre.argent + " "))
+    tab[0] = document.createElement("LI").appendChild(document.createTextNode('life:' + infosMonstre.vie + " ")) 
+    tab[1] = document.createElement("LI").appendChild(document.createTextNode('money:' + infosMonstre.argent + " "));
     if(infosMonstre.enVie) 
-        tab[2] = document.createElement("li").appendChild(document.createTextNode('awake ')) 
+        tab[2] = document.createElement("LI").appendChild(document.createTextNode('awake ')) 
     else
-        tab[2] = document.createElement("li").appendChild(document.createTextNode('sleeping ')) 
+        tab[2] = document.createElement("LI").appendChild(document.createTextNode('sleeping ')) 
     
-    for(let i = 0; i < status.length; i++) 
+    for(let i = 0; i < tab.length; i++) 
         status[i].replaceWith(tab[i]);    
 }
 
