@@ -45,12 +45,29 @@ function eat() {
 }
 
 function sleep(fonction) {
-    awake = false;
-    setTimeout(() => {
-        live++;
-        awake = true;
-        fonction();
-    }, 10000);
+    if(actionRealisable(1)) {
+        awake = false;
+        setTimeout(() => {
+            live++;
+            awake = true;
+            fonction();
+        }, 10000);
+    }
+}
+
+function reduit1Pv() {
+    if(actionRealisable(1)) 
+        live--;
+}
+
+function kill() {
+    if(live != 0)
+        live = 0;
+}
+
+function regen() {
+    if(live === 0)
+        live = 200;
 }
 
 function init(monstre) {
@@ -68,6 +85,9 @@ export default {
     fight: fight,
     work: work,
     eat: eat,
-    sleep: sleep
+    sleep: sleep,
+    reduitPV: reduit1Pv,
+    kill: kill,
+    regen: regen
 }
 

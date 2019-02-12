@@ -3,6 +3,7 @@ import monster from './actions.js';
 import ui from './ui.js';
 
 let b1, b2, b3, b4, b5, b6, b7;
+let k;
 
 function start() {
     monster.init({
@@ -12,7 +13,8 @@ function start() {
       awake : true
     });
 
-    let mon = monster.get();
+    //Lancement de la fonction appelée toutes les 12 secondes
+    let interval = setInterval(actionRandom, 12000);
     ui.log(generateMessage())
     ui.displayStatus(monster);
 
@@ -22,12 +24,20 @@ function start() {
     b7 = document.querySelector('#b7');
     b4 = document.querySelector('#b4');
     b5 = document.querySelector('#b5');
-    b6=document.querySelector('#b6');
+    b6 = document.querySelector('#b6');
+    b1 = document.querySelector("#b1");
+    k = document.querySelector('#k');
+
 
     b6.addEventListener('click',()=> {
       let m = monster.get();
       alert(generateMessage())
     });
+
+    b1.addEventListener('click', () => {
+      monster.regen();
+      majInterfaceGraphique();
+    })
 
     b2.addEventListener('click', () => {
         monster.run();
@@ -50,9 +60,32 @@ function start() {
     });
 
     b5.addEventListener('click', () => {
-      majInterfaceGraphique();
       monster.eat();
+      majInterfaceGraphique();
     });
+
+    k.addEventListener('click', () => {
+      monster.kill();
+      majInterfaceGraphique();
+    });
+}
+
+function actionRandom() {
+  monster.reduitPV();
+  let tabMethode = Object.keys(monster);
+  //On enlève les méthode inutiles
+  tabMethode.shift();
+  tabMethode.shift();
+  tabMethode.pop();
+  tabMethode.pop();
+  tabMethode.pop();
+
+  //On applique le math.random
+  let indice = Math.floor(Math.random() * tabMethode.length);
+
+  //On exécute la méthode en aléatoire
+  eval("monster." + tabMethode[indice] + "()");
+  majInterfaceGraphique();
 }
 
 function majInterfaceGraphique() {

@@ -29,5 +29,5 @@ function displayStatus(monster) {
 
 export default {
     log: log,
-    displayStatus
+    displayStatus: displayStatus
 }
