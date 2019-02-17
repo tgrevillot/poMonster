@@ -24,7 +24,24 @@ function displayStatus(monster) {
         tab[2] = document.createElement("LI").appendChild(document.createTextNode('sleeping ')) 
     
     for(let i = 0; i < tab.length; i++) 
-        status[i].replaceWith(tab[i]);    
+        status[i].replaceWith(tab[i]);   
+        
+    //Modification couleur boîte monster
+    let boite = document.querySelector("#monster");
+    let mon = monster.get();
+    if(mon.vie >= 20)
+        boite.style.backgroundColor = "green";
+    else if(mon.vie >= 15 && mon.vie < 20)
+        boite.style.backgroundColor = "orange";
+    else if(mon.vie >= 10 && mon.vie < 15)
+        boite.style.backgroundColor = "yellow";
+    else if(mon.vie < 10)
+        boite.style.backgroundColor = "red";
+
+    //Modification épaisseur de la boîte monster
+    let argent = mon.argent;
+    console.log((argent * 10).toString())
+    boite.style.borderWidth = (argent/10).toString() + "px";
 }
 
 export default {

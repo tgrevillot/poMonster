@@ -8,7 +8,7 @@ let k;
 function start() {
     monster.init({
       name : "Terry",
-      life :  10,
+      life :  20,
       money : 20,
       awake : true
     });
